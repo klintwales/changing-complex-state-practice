@@ -8,7 +8,30 @@ function App() {
   });
 
 function handleChange(event){
-  setContact()
+  const newValue = event.target.value;
+  const inputName = event.target.name;
+
+  setContact(prevValue => {
+    if(inputName === "fName"){
+      return {
+          fName: newValue,
+          lName: prevValue.lName,
+          email: prevValue.email
+      };
+    }else if(inputName === "lName"){
+      return {
+          fName: prevValue.fName,
+          lName: newValue,
+          email: prevValue.email
+      };
+    }else if(inputName === "email"){
+      return {
+          fName: prevValue.fName,
+          lName: prevValue.lName,
+          email: newValue
+      };
+    }
+  });
 }
   return (
     <div className="container">
